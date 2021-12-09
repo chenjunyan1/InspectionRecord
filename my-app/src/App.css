@@ -1,0 +1,35 @@
+.extract_t{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.extract_t>div>div>div:nth-child(2){
+    display: flex;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.page_title{
+    display: flex;
+    justify-content: center;
+    background: dimgrey;
+    color: #10A560;
+}
+.page_name{
+    display: grid;
+    height: 100px;
+    grid-template-rows: 100%;
+    grid-template-columns: 10% repeat(4,22.5%);
+}
+.page_name>*{
+    overflow: auto;
+    padding-left: 5px;
+    padding-right: 5px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
+    border: 1px solid cadetblue;
+}
+.page_test>*{
+    border: 1px solid salmon;
+}
