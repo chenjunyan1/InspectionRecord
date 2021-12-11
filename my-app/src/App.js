@@ -14,7 +14,6 @@ const Todo = AV.Object.extend('Todo');
 const query = new AV.Query('Todo');
 
 
-
 export default class App extends Component {
   constructor(props) {
     super(props)
@@ -72,6 +71,7 @@ export default class App extends Component {
     return i;
   };
 
+
   // 获取时间
   time(today) {
     var y = today.getFullYear();
@@ -84,14 +84,19 @@ export default class App extends Component {
     s = this.checkTime(s);
     return y + "/" + a + "/" + b + " | " + h + ":" + m + ":" + s;
   };
+  // 判断合格和不合格
+  judge() {
+
+  }
+  // 判断在值日楼层
 
   render() {
 
     return (
-      <div>
-        {console.log(this.state.name_arr[0][0])}
-        {console.log(this.state.name_arr[1])}
-        {console.log(this.state.name_arr[2])}
+      <div className="app">
+        {console.table(this.state.name_arr[0][0])}
+        {console.table(this.state.name_arr[1])}
+        {console.table(this.state.name_arr[2])}
         {/* 页面1 */}
         <div>
           {/* 标题 */}
@@ -114,7 +119,8 @@ export default class App extends Component {
             <div>合格 / 不合格 | 不合格区域</div>
             <div>合格 / 不合格 | 不合格区域</div>
           </div>
-          {/* 每日检查报告 */}
+          {/* 每日检查报告 */
+          }
           {
             this.state.name_arr[2].map((item, index) => {
               return (
@@ -123,9 +129,14 @@ export default class App extends Component {
                   <div>
                     {this.time(this.state.name_arr[2][index])}
                   </div>
-                  {/* 一楼不合格区域 */}
+                  {/* 一组今日值日楼层 */}
+                  {<div>
+                    1f
+                  </div>}
+                  {/* 一组不合格区域 */}
                   <div>{
                     this.state.name_arr[0][index].one.map((item_hege_1, index_hege_1) => {
+
                       return (
                         <div key={index_hege_1}>
                           {item_hege_1 ? "不合格:" + Data.str_1[index_hege_1] : null}
@@ -133,7 +144,11 @@ export default class App extends Component {
                       )
                     })
                   }</div>
-                  {/* 二楼不合格区域 */}
+                  {/* 一组今日值日楼层 */}
+                  <div>
+                    2f
+                  </div>
+                  {/* 二组不合格区域 */}
                   <div>{
                     this.state.name_arr[0][index].two.map((item_hege_1, index_hege_1) => {
                       return (
@@ -143,7 +158,11 @@ export default class App extends Component {
                       )
                     })
                   }</div>
-                  {/* 三楼不合格区域 */}
+                  {/* 三组今日值日楼层 */}
+                  <div>
+                    3f
+                  </div>
+                  {/* 三组不合格区域 */}
                   <div>{
                     this.state.name_arr[0][index].three.map((item_hege_1, index_hege_1) => {
                       return (
@@ -153,7 +172,11 @@ export default class App extends Component {
                       )
                     })
                   }</div>
-                  {/* 四楼楼不合格区域 */}
+                  {/* 四组今日值日楼层 */}
+                  <div>
+                    4f
+                  </div>
+                  {/* 四组楼不合格区域 */}
                   <div>{
                     this.state.name_arr[0][index].fout.map((item_hege_1, index_hege_1) => {
                       return (
