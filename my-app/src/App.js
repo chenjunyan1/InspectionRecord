@@ -86,6 +86,7 @@ export default class App extends Component {
   };
   // 判断合格和不合格
   judge(arr) {
+
     for (let a = 0; a < arr.length; a++) {
       if (arr[a] == true) {
         return true;
@@ -93,10 +94,35 @@ export default class App extends Component {
     }
     return false;
   }
-  // 判断在值日楼层
-  floor(){
-    
+  // 判断在值日楼层5
+  floor(num_1, num_2) {
+    // num_1 是提交的第几天（次数）
+    // num_2 是第几楼层的人名单
+    if (Data.name[num_2].indexOf(this.state.name_arr[1][num_1][0][0]) != -1) {
+      return 1;
+    } else if (Data.name[num_2].indexOf(this.state.name_arr[1][num_1][1][0]) != -1) {
+      return 2;
+    } else if (Data.name[num_2].indexOf(this.state.name_arr[1][num_1][2][0]) != -1) {
+      return 3;
+    } else if (Data.name[num_2].indexOf(this.state.name_arr[1][num_1][3][0]) != -1) {
+      return 4;
+    }
   }
+
+  // 数字转英文
+  forEnglish(num) {
+    if (num == 1) {
+      return "one"
+    } else if (num == 2) {
+      return "two"
+    } else if (num == 3) {
+      return "three"
+    } else if (num == 4) {
+      return "fout"
+    }
+  }
+
+
   render() {
 
     return (
@@ -113,14 +139,14 @@ export default class App extends Component {
           {/* 小组人员 */}
           <div className="page_name">
             <div>小组人员 : </div>
-            <div>一组：葛雨城,尹泽森，周光明，陈紫鹏</div>
-            <div>二组：王台归，吴玉笋，李子颖，窦泽钊，吕志浩</div>
-            <div>三组：陈艺文，崔永祥，谷文瑞，刘海武，雷涵</div>
-            <div>四组：陈俊雁，罗家祥，李小娟，颜学润，张斌</div>
+            <div>{Data.name[0]}</div>
+            <div>{Data.name[1]}</div>
+            <div>{Data.name[2]}</div>
+            <div>{Data.name[3]}</div>
           </div>
           {/* 日期及合格 */}
           <div className="page_name">
-            <div>日期</div>
+            <div>提交时间</div>
             <div>合格 / 不合格 | 不合格区域</div>
             <div>合格 / 不合格 | 不合格区域</div>
             <div>合格 / 不合格 | 不合格区域</div>
@@ -138,30 +164,30 @@ export default class App extends Component {
                   </div>
                   {/* 一组今日值日楼层 */}
                   {<div>
-                    1f
+                    {this.floor(index, 0)}F
                   </div>}
                   {/* 一组不合格区域 */}
                   <div>{
-                    this.judge(this.state.name_arr[0][index].one) ?
-                      this.state.name_arr[0][index].one.map((item_hege_1, index_hege_1) => {
+                    this.judge(this.state.name_arr[0][index][this.forEnglish(this.floor(index, 0))]) ?
+                      this.state.name_arr[0][index][this.forEnglish(this.floor(index, 0))].map((item_hege_1, index_hege_1) => {
                         return (
                           <div key={index_hege_1}>
-                            {item_hege_1 ? "不合格:" + Data.str_1[index_hege_1] : null}
+                            {item_hege_1 ? "不合格，应 : " + Data["str_" + this.floor(index, 0)][index_hege_1] : null}
                           </div>
                         )
                       }) : (<div>合格</div>)
                   }</div>
                   {/* 一组今日值日楼层 */}
                   <div>
-                    2f
+                    {this.floor(index, 1)}F
                   </div>
                   {/* 二组不合格区域 */}
                   <div>{
-                    this.judge(this.state.name_arr[0][index].two) ?
-                      this.state.name_arr[0][index].two.map((item_hege_1, index_hege_1) => {
+                    this.judge(this.state.name_arr[0][index][this.forEnglish(this.floor(index, 1))]) ?
+                      this.state.name_arr[0][index][this.forEnglish(this.floor(index, 1))].map((item_hege_1, index_hege_1) => {
                         return (
                           <div key={index_hege_1}>
-                            {item_hege_1 ? "不合格:" + Data.str_2[index_hege_1] : null}
+                            {item_hege_1 ? "不合格，应 : " + Data["str_" + this.floor(index, 1)][index_hege_1] : null}
                           </div>
                         )
                       })
@@ -169,15 +195,15 @@ export default class App extends Component {
                   }</div>
                   {/* 三组今日值日楼层 */}
                   <div>
-                    3f
+                    {this.floor(index, 2)}F
                   </div>
                   {/* 三组不合格区域 */}
                   <div>{
-                    this.judge(this.state.name_arr[0][index].three) ?
-                      this.state.name_arr[0][index].three.map((item_hege_1, index_hege_1) => {
+                    this.judge(this.state.name_arr[0][index][this.forEnglish(this.floor(index, 2))]) ?
+                      this.state.name_arr[0][index][this.forEnglish(this.floor(index, 2))].map((item_hege_1, index_hege_1) => {
                         return (
                           <div key={index_hege_1}>
-                            {item_hege_1 ? "不合格:" + Data.str_3[index_hege_1] : null}
+                            {item_hege_1 ? "不合格，应 : " + Data["str_" + this.floor(index, 2)][index_hege_1] : null}
                           </div>
                         )
                       })
@@ -185,15 +211,15 @@ export default class App extends Component {
                   }</div>
                   {/* 四组今日值日楼层 */}
                   <div>
-                    4f
+                    {this.floor(index, 3)}F
                   </div>
                   {/* 四组楼不合格区域 */}
                   <div>{
-                    this.judge(this.state.name_arr[0][index].fout) ?
-                      this.state.name_arr[0][index].fout.map((item_hege_1, index_hege_1) => {
+                    this.judge(this.state.name_arr[0][index][this.forEnglish(this.floor(index, 3))]) ?
+                      this.state.name_arr[0][index][this.forEnglish(this.floor(index, 3))].map((item_hege_1, index_hege_1) => {
                         return (
                           <div key={index_hege_1}>
-                            {item_hege_1 ? "不合格:" + Data.str_4[index_hege_1] : null}
+                            {item_hege_1 ? "不合格，应 : " + Data["str_" + this.floor(index, 3)][index_hege_1] : null}
                           </div>
                         )
                       })
