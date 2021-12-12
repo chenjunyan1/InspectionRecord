@@ -85,11 +85,18 @@ export default class App extends Component {
     return y + "/" + a + "/" + b + " | " + h + ":" + m + ":" + s;
   };
   // 判断合格和不合格
-  judge() {
-
+  judge(arr) {
+    for (let a = 0; a < arr.length; a++) {
+      if (arr[a] == true) {
+        return true;
+      }
+    }
+    return false;
   }
   // 判断在值日楼层
-
+  floor(){
+    
+  }
   render() {
 
     return (
@@ -135,14 +142,14 @@ export default class App extends Component {
                   </div>}
                   {/* 一组不合格区域 */}
                   <div>{
-                    this.state.name_arr[0][index].one.map((item_hege_1, index_hege_1) => {
-
-                      return (
-                        <div key={index_hege_1}>
-                          {item_hege_1 ? "不合格:" + Data.str_1[index_hege_1] : null}
-                        </div>
-                      )
-                    })
+                    this.judge(this.state.name_arr[0][index].one) ?
+                      this.state.name_arr[0][index].one.map((item_hege_1, index_hege_1) => {
+                        return (
+                          <div key={index_hege_1}>
+                            {item_hege_1 ? "不合格:" + Data.str_1[index_hege_1] : null}
+                          </div>
+                        )
+                      }) : (<div>合格</div>)
                   }</div>
                   {/* 一组今日值日楼层 */}
                   <div>
@@ -150,13 +157,15 @@ export default class App extends Component {
                   </div>
                   {/* 二组不合格区域 */}
                   <div>{
-                    this.state.name_arr[0][index].two.map((item_hege_1, index_hege_1) => {
-                      return (
-                        <div key={index_hege_1}>
-                          {item_hege_1 ? "不合格:" + Data.str_2[index_hege_1] : null}
-                        </div>
-                      )
-                    })
+                    this.judge(this.state.name_arr[0][index].two) ?
+                      this.state.name_arr[0][index].two.map((item_hege_1, index_hege_1) => {
+                        return (
+                          <div key={index_hege_1}>
+                            {item_hege_1 ? "不合格:" + Data.str_2[index_hege_1] : null}
+                          </div>
+                        )
+                      })
+                      : (<div>合格</div>)
                   }</div>
                   {/* 三组今日值日楼层 */}
                   <div>
@@ -164,13 +173,15 @@ export default class App extends Component {
                   </div>
                   {/* 三组不合格区域 */}
                   <div>{
-                    this.state.name_arr[0][index].three.map((item_hege_1, index_hege_1) => {
-                      return (
-                        <div key={index_hege_1}>
-                          {item_hege_1 ? "不合格:" + Data.str_3[index_hege_1] : null}
-                        </div>
-                      )
-                    })
+                    this.judge(this.state.name_arr[0][index].three) ?
+                      this.state.name_arr[0][index].three.map((item_hege_1, index_hege_1) => {
+                        return (
+                          <div key={index_hege_1}>
+                            {item_hege_1 ? "不合格:" + Data.str_3[index_hege_1] : null}
+                          </div>
+                        )
+                      })
+                      : (<div>合格</div>)
                   }</div>
                   {/* 四组今日值日楼层 */}
                   <div>
@@ -178,13 +189,15 @@ export default class App extends Component {
                   </div>
                   {/* 四组楼不合格区域 */}
                   <div>{
-                    this.state.name_arr[0][index].fout.map((item_hege_1, index_hege_1) => {
-                      return (
-                        <div key={index_hege_1}>
-                          {item_hege_1 ? "不合格:" + Data.str_4[index_hege_1] : null}
-                        </div>
-                      )
-                    })
+                    this.judge(this.state.name_arr[0][index].fout) ?
+                      this.state.name_arr[0][index].fout.map((item_hege_1, index_hege_1) => {
+                        return (
+                          <div key={index_hege_1}>
+                            {item_hege_1 ? "不合格:" + Data.str_4[index_hege_1] : null}
+                          </div>
+                        )
+                      })
+                      : (<div>合格</div>)
                   }</div>
                 </div>
 
