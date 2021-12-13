@@ -86,7 +86,6 @@ export default class App extends Component {
   };
   // 判断合格和不合格
   judge(arr) {
-
     for (let a = 0; a < arr.length; a++) {
       if (arr[a] == true) {
         return true;
