@@ -93,6 +93,7 @@ export default class App extends Component {
     }
     return false;
   }
+  
   // 判断在值日楼层5
   floor(num_1, num_2) {
     // num_1 是提交的第几天（次数）
